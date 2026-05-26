@@ -6,6 +6,7 @@ export interface Evento {
   capacidade: number;
   precoIngresso: number;
   genero: string;
+  imagem?: string;
 }
 
 export interface Cliente {

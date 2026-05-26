@@ -13,40 +13,62 @@ import { Evento } from '../../../core/services/types/types';
   styleUrl: './alterar.component.css'
 })
 export class AlterarComponent implements OnInit {
+
   form!: FormGroup;
   idEvento!: number | string;
+  imagemPreview: string | null = null;   // <-- AQUI
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private fb: FormBuilder,
     private service: EventosService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.idEvento = this.route.snapshot.paramMap.get('id')!;
 
-    // Cria o formulário e já coloca a "trava" de obrigatório (Validators.required)
     this.form = this.fb.group({
       nome: ['', Validators.required],
       data: ['', Validators.required],
       banda: ['', Validators.required],
+      genero: ['', Validators.required],
       capacidade: [0, Validators.required],
-      precoIngresso: [0, Validators.required]
+      precoIngresso: [0, Validators.required],
+      imagem: ['']
     });
 
-    // Puxa os dados antigos
-    this.service.buscarPorId(this.idEvento).subscribe(evento => {
+    this.service.buscarPorId(this.idEvento).subscribe((evento: Evento) => {
       if (evento) {
         this.form.patchValue(evento);
+        this.imagemPreview = evento.imagem || null;
       }
     });
+  }
+
+  aoSelecionarImagem(event: Event) {
+    const input = event.target as HTMLInputElement;
+
+    if (input.files && input.files.length > 0) {
+      const arquivo = input.files[0];
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        this.imagemPreview = reader.result as string;
+
+        this.form.patchValue({
+          imagem: reader.result as string
+        });
+      };
+
+      reader.readAsDataURL(arquivo);
+    }
   }
 
   onSubmit() {
     if (this.form.valid) {
       const eventoAtualizado: Evento = {
-        id: this.idEvento,
+        id: Number(this.idEvento),
         ...this.form.value
       };
 

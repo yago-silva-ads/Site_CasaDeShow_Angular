@@ -12,24 +12,42 @@ import { Evento } from '../../../core/services/types/types';
   styleUrl: './cadastrar.component.css'
 })
 export class CadastrarComponent {
-  // Cria um objeto vazio para receber os dados do formulário
-  evento: Evento = {  
-  nome: '',
-  data: '',
-  banda: '',
-  genero: '',
-  capacidade: 0,
-  precoIngresso: 0
-} as Evento;
+
+  imagemPreview: string | null = null;
+
+  evento: Evento = {
+    nome: '',
+    data: '',
+    banda: '',
+    genero: '',
+    capacidade: 0,
+    precoIngresso: 0,
+    imagem: ''
+  } as Evento;
 
   constructor(
     private service: EventosService,
     private router: Router
-  ) { }
+  ) {}
 
   private gerarIdNumerico(): number {
-    // 6 dígitos (ex.: 100000 a 999999)
     return Math.floor(100000 + Math.random() * 900000);
+  }
+
+  aoSelecionarImagem(event: Event) {
+    const input = event.target as HTMLInputElement;
+
+    if (input.files && input.files.length > 0) {
+      const arquivo = input.files[0];
+      const reader = new FileReader();
+
+      reader.onload = () => {
+        this.imagemPreview = reader.result as string;
+        this.evento.imagem = reader.result as string;
+      };
+
+      reader.readAsDataURL(arquivo);
+    }
   }
 
   submeter() {

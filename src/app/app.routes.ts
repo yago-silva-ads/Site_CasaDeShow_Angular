@@ -28,7 +28,7 @@ import { LoginComponent } from './pages/login/login.component';
 export const routes: Routes = [
 
   // páginas SEM header/sidebar
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'ingressos', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'ingressos', component: IngressosComponent },
 

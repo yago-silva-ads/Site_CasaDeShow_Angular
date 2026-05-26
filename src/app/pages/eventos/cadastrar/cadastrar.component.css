@@ -67,3 +67,24 @@ form label {
   color: #7a6a55;
   cursor: not-allowed;
 }
+
+.preview-container {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.img-preview {
+  max-width: 100%;
+  max-height: 200px;
+  border-radius: 6px;
+  border: 1px solid #2e2920;
+}
+
+input[type="file"]::file-selector-button {
+  background: #2e2920;
+  color: #d4c9b4;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}

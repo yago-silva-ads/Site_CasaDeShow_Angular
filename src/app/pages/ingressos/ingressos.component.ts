@@ -49,20 +49,17 @@ constructor(
   carregarEventos() {
     this.eventosService.listar().subscribe(res => {
 
-      this.eventos = res.map((e: any) => ({
-        id: e.id,
-        nome: e.nome,
-        banda: e.banda,
-        data: e.data,
-
-        // valores adaptados
-        cap: e.capacidade,
-        preco: e.precoIngresso,
-
-        // padrões
-        vagas: e.capacidade,
-        genero: e.genero
-      }));
+        this.eventos = res.map((e: any) => ({
+      id: e.id,
+      nome: e.nome,
+      banda: e.banda,
+      data: e.data,
+      cap: e.capacidade,
+      preco: e.precoIngresso,
+      vagas: e.capacidade,
+      genero: e.genero,
+      imagem: e.imagem
+}));
 
     });
   }
@@ -156,6 +153,7 @@ constructor(
       this.closeCart();
     }
   }
+  
 finalizar() {
 
   if (!this.nome || !this.email || !this.telefone) {
@@ -166,37 +164,56 @@ finalizar() {
   const cliente = {
     nome: this.nome,
     email: this.email,
-    telefone: this.telefone
+    telefone: this.telefone,
+    cpf: this.cpf
   };
 
-  this.clientesService.incluir(cliente)
-    .subscribe((clienteCriado: any) => {
+  // busca todos os clientes
+  this.clientesService.listar().subscribe((clientes: any[]) => {
 
-      const pedidos = this.carrinho.map(item => ({
-        clienteId: clienteCriado.id,
-        eventoId: item.id,
-        data: new Date().toISOString().split('T')[0],
+    // procura pelo email (pode trocar por cpf)
+    const clienteExistente = clientes.find(
+      c => c.email === this.email
+    );
 
-        // total por item
-        total: item.preco * item.qty
-      }));
+    if (clienteExistente) {
+      // já existe -> usa o id dele
+      this.criarPedidos(clienteExistente.id);
 
-
-      const requisicoes = pedidos.map(p =>
-        this.pedidosService.incluir(p)
-      );
-
-      forkJoin(requisicoes)
-        .subscribe(() => {
-
-          this.compraFinalizada = true;
-          this.carrinho = [];
-
-          this.nome = '';
-          this.email = '';
-          this.telefone = '';
-
+    } else {
+      // não existe -> cria cliente novo
+      this.clientesService.incluir(cliente)
+        .subscribe((novoCliente: any) => {
+          this.criarPedidos(novoCliente.id);
         });
+    }
+
+  });
+}
+
+criarPedidos(clienteId: number) {
+
+  const pedidos = this.carrinho.map(item => ({
+    clienteId: clienteId,
+    eventoId: item.id,
+    data: new Date().toISOString().split('T')[0],
+    total: item.preco * item.qty
+  }));
+
+  const requisicoes = pedidos.map(p =>
+    this.pedidosService.incluir(p)
+  );
+
+  forkJoin(requisicoes)
+    .subscribe(() => {
+
+      this.compraFinalizada = true;
+      this.carrinho = [];
+
+      this.nome = '';
+      this.email = '';
+      this.telefone = '';
+      this.cpf = '';
 
     });
 }

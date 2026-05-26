@@ -23,6 +23,15 @@
         <small class="texto-erro" *ngIf="form.get('banda')?.invalid && form.get('banda')?.touched">
             A banda é obrigatória!
         </small>
+        
+        <label>Gênero:</label>
+        <select formControlName="genero" class="input-simples">
+            <option value="">Selecione</option>
+            <option value="rock">Rock</option>
+            <option value="jazz">Jazz</option>
+            <option value="classico">Clássico</option>
+            <option value="rap">Rap / Hip-Hop</option>
+        </select>
 
         <label>Capacidade:</label>
         <input formControlName="capacidade" type="number" min="0" class="input-simples"
@@ -39,6 +48,17 @@
         <small class="texto-erro" *ngIf="form.get('precoIngresso')?.invalid && form.get('precoIngresso')?.touched">
             Preço inválido!
         </small>
+
+        <label>Imagem do Evento:</label>
+        <input
+            type="file"
+            class="input-simples"
+            accept="image/*"
+            (change)="aoSelecionarImagem($event)">
+
+        <div *ngIf="imagemPreview" class="preview-container">
+        <img [src]="imagemPreview" class="img-preview">
+        </div>
 
         <button type="submit" class="btn-salvar" [disabled]="form.invalid">Salvar Alterações</button>
     </form>

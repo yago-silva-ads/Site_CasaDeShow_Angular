@@ -1,12 +1,12 @@
 <!-- NAVBAR -->
 <nav>
-  <a href="#" class="nav-logo">
+  <a href="/ingressos" class="nav-logo">
     <div class="nav-logo-mark">N</div>
-    <span class="nav-logo-name">NoirEspaço</span>
+<span class="nav-logo-name">Noctis Hall</span>
   </a>
 
   <div class="nav-right">
-    <a href="#">Área de Funcionários</a>
+    <a href="/login">Área de Funcionários</a>
   <!--  <a href="#">Sobre</a>-->
     <div class="nav-cart" (click)="openCart()">
       🎟 Carrinho
@@ -76,11 +76,14 @@
        *ngFor="let e of eventosFiltrados; let i = index"
        [style.animation-delay]="(i * 0.07) + 's'">
 
-    <div class="event-banner">
-      <span class="event-genre">
-        {{ genreLabel[e.genero] }}
-      </span>
-    </div>
+   <div class="event-banner"
+     [style.background-image]="'url(' + e.imagem + ')'">
+
+  <span class="event-genre">
+    {{ genreLabel[e.genero] }}
+  </span>
+
+</div>
 
     <div class="event-body">
 
@@ -258,6 +261,6 @@
 
 
 <footer>
-  NoirEspaço © 2026 —
-  <a routerLink="/login">Acesso funcionários</a>
+Noctis Hall © 2026 —
+  <a routerLink="/login">Acesso clientes</a>
 </footer>
