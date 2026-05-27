@@ -191,8 +191,9 @@ Consulte a seção de configuração acima para gerar e configurar sua própria 
 ## 👤 Autor
 
 Desenvolvido por **Victor Gabriel** E **Yago Santos**  como projeto acadêmico para o SENAC
+
 [![GitHub](https://img.shields.io/badge/GitHub-Yago--Silva-181717?style=flat&logo=github)](https://github.com/yago-silva-ads/Site_CasaDeShow_Angular)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Yago%20Santos%20Silva-0077B5?style=flat&logo=linkedin)](https://www.linkedin.com/in/yago-santos-silva-aa3233245)
-[![GitHub](https://img.shields.io/badge/GitHub-Yago--Silva-181717?style=flat&logo=github)](https://github.com/yago-silva-ads/Site_CasaDeShow_Angular)
+
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Yago%20Santos%20Silva-0077B5?style=flat&logo=linkedin)](https://www.linkedin.com/in/yago-santos-silva-aa3233245)
 
