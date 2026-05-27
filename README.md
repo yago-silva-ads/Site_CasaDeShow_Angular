@@ -196,5 +196,6 @@ Desenvolvido por **Victor Gabriel** E **Yago Santos**  como projeto acadêmico p
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Yago%20Santos%20Silva-0077B5?style=flat&logo=linkedin)](https://www.linkedin.com/in/yago-santos-silva-aa3233245)
 
 [![GitHub](https://img.shields.io/badge/GitHub-Victor--Harger-181717?style=flat&logo=github)](https://github.com/Victor-Harger/Site_CasaDeShow_Angular)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Victor%20Gabriel-0077B5?style=flat&logo=linkedin)](https://www.linkedin.com/in/victor-gabriel-prado-harger)(https://www.linkedin.com/in/yago-santos-silva-aa3233245)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Victor%20Gabriel-0077B5?style=flat&logo=linkedin)](https://www.linkedin.com/in/victor-gabriel-prado-harger)
+
 
