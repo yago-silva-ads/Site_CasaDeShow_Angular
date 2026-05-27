@@ -1,59 +1,198 @@
-# 🎵 Casa de Show - Sistema de Gestão (Angular)
+# 🎶 Noctis Hall — Sistema de Casa de Shows
 
-Fala dev! Esse é o repositório do nosso projeto de ADS do Senac. Ele é um sistema completo para gestão de Eventos, Clientes e um Relatório de Vendas relacional.
-
-O projeto foi construído utilizando **Angular** no frontend e **json-server** para simular uma API (backend) consumindo um arquivo JSON.
-
----
-
-## 🛠️ O que você precisa ter instalado na sua máquina?
-
-Antes de começar, certifique-se de que você tem os seguintes programas instalados:
-* **[Node.js](https://nodejs.org/):** (Baixe a versão LTS).
-* **Git:** Para clonar o repositório.
-* **Angular CLI:** (Opcional, mas recomendado). Para instalar, abra o terminal e rode: `npm install -g @angular/cli`
+Projeto acadêmico desenvolvido para o curso de desenvolvimento web do **SENAC**.  
+Aplicação completa de gerenciamento de uma casa de shows fictícia, com área pública de compra de ingressos e área privada de administração.
 
 ---
 
-## 🚀 Passo a Passo para Rodar o Projeto Localmente
+## 🖥️ Demonstração
 
-Siga esta ordem exata no seu terminal (ou Git Bash) para não ter erro:
+| Área Pública | Área Administrativa |
+|---|---|
+| Vitrine de eventos com filtros | CRUD completo de Eventos |
+| Drawer de detalhes do evento | CRUD completo de Clientes |
+| Carrinho de compras | Gerenciamento de Pedidos |
+| Checkout com cadastro automático | Login de Funcionários |
+| Mapa de rotas integrado (Google Maps) | Sidebar retrátil |
 
-### 1. Clonar o repositório
-Escolha uma pasta no seu computador e baixe o código do GitHub:
+---
+
+## 🚀 Tecnologias
+
+- **Angular 19** — Standalone Components
+- **TypeScript 5.7**
+- **JSON-Server** — API fake para desenvolvimento
+- **Google Maps Embed API** — Mapa de rotas
+- **RxJS** — Programação reativa
+- **Angular SSR** — Server-Side Rendering
+
+---
+
+## ⚙️ Como rodar o projeto
+
+### Pré-requisitos
+
+- Node.js 18+
+- Angular CLI 19
+- JSON-Server
+
+### Instalação
+
 ```bash
-git clone [https://github.com/yago-silva-ads/casadeshow-senac.git](https://github.com/yago-silva-ads/casadeshow-senac.git)
-2. Entrar na pasta do projeto
-Bash
+# Clone o repositório
+git clone https://github.com/Victor-Harger/casadeshow-senac.git
+
+# Entre na pasta
 cd casadeshow-senac
-3. Instalar as dependências (Bibliotecas)
-Isso vai ler o arquivo package.json e instalar tudo o que o Angular precisa para funcionar.
 
-Bash
+# Instale as dependências
 npm install
-4. Ligar o Banco de Dados Fake (Backend)
-Nós usamos o json-server para simular o nosso banco de dados. Rode o comando abaixo e deixe este terminal aberto rodando no fundo:
 
-Bash
-npx json-server --watch backend/db.json
-5. Ligar o Angular (Frontend)
-Abra uma nova janela do terminal, garanta que você está dentro da pasta casadeshow-senac e rode:
+# Instale o JSON-Server globalmente (se ainda não tiver)
+npm install -g json-server
+```
 
-Bash
+### Configuração da API Key
+
+O projeto usa a Google Maps Embed API para exibir rotas.  
+Você precisa criar seu próprio arquivo de environment:
+
+```bash
+# Copie o arquivo de exemplo
+cp src/environments/environment.example.ts src/environments/environment.ts
+```
+
+Abra o `environment.ts` e substitua `SUA_KEY_AQUI` pela sua chave gerada no [Google Cloud Console](https://console.cloud.google.com).
+
+### Rodando a aplicação
+
+Abra **dois terminais**:
+
+**Terminal 1 — API fake:**
+```bash
+json-server --watch db.json
+```
+
+**Terminal 2 — Angular:**
+```bash
 ng serve
-Pronto! Acesse http://localhost:4200/ no seu navegador e o sistema estará rodando com o design completo.
+```
 
-🏗️ Como e onde modificar o código?
-Se você quiser alterar regras de negócio, telas ou design, a arquitetura está separada assim:
+Acesse: [http://localhost:4200](http://localhost:4200)
 
-🗄️ Banco de Dados: Vá em backend/db.json. É aqui que ficam salvos os clientes, eventos e pedidos.
+---
 
-🖥️ Telas (Componentes): Vá em src/app/pages/. Cada entidade (Clientes, Eventos, Pedidos) tem sua própria pasta com os arquivos de Cadastro, Listagem, HTML e CSS.
+## 🗂️ Funcionalidades
 
-⚙️ Conexão com a API (Services): Vá em src/app/core/services/. É aqui que fazemos os GETs e POSTs para o json-server.
+### Área Pública (`/ingressos`)
+- Vitrine de eventos com filtro por gênero musical
+- **Drawer lateral** com detalhes do evento ao clicar no card
+- Carrinho de compras com controle de quantidade
+- Checkout que cadastra o cliente automaticamente
+- **Mapa de rotas** integrado para orientar o cliente até o local do evento
 
-🛣️ Rotas do Sistema: Vá em src/app/app.routes.ts. Se for criar uma tela nova, você precisa registrar o caminho dela aqui.
+### Área Administrativa (`/login`)
+- Autenticação de funcionários
+- **Eventos** — Cadastrar, listar, consultar, editar e excluir
+- **Clientes** — Cadastrar, listar, consultar, editar e excluir  
+- **Pedidos** — Listar e registrar vendas manualmente
+- Sidebar retrátil com navegação categorizada
 
-🎨 Design Global: O arquivo src/styles.css contém os visuais de tabelas e containers padrão (ex: .form-container e .tabela-estilizada).
+---
 
-Qualquer dúvida, é só dar um grito!
+## 🔐 Segurança
+
+A API key do Google Maps **não está versionada** neste repositório.  
+O arquivo `src/environments/environment.ts` está listado no `.gitignore`.  
+Consulte a seção de configuração acima para gerar e configurar sua própria chave.
+
+---
+---
+
+## ⚙️ Como rodar o projeto
+
+### Pré-requisitos
+
+- Node.js 18+
+- Angular CLI 19
+- JSON-Server
+
+### Instalação
+
+```bash
+# Clone o repositório
+git clone https://github.com/seu-usuario/casadeshow-senac.git
+
+# Entre na pasta
+cd casadeshow-senac
+
+# Instale as dependências
+npm install
+
+# Instale o JSON-Server globalmente (se ainda não tiver)
+npm install -g json-server
+```
+
+### Configuração da API Key
+
+O projeto usa a Google Maps Embed API para exibir rotas.  
+Você precisa criar seu próprio arquivo de environment:
+
+```bash
+# Copie o arquivo de exemplo
+cp src/environments/environment.example.ts src/environments/environment.ts
+```
+
+Abra o `environment.ts` e substitua `SUA_KEY_AQUI` pela sua chave gerada no [Google Cloud Console](https://console.cloud.google.com).
+
+### Rodando a aplicação
+
+Abra **dois terminais**:
+
+**Terminal 1 — API fake:**
+```bash
+json-server --watch db.json
+```
+
+**Terminal 2 — Angular:**
+```bash
+ng serve
+```
+
+Acesse: [http://localhost:4200](http://localhost:4200)
+
+---
+
+## 🗂️ Funcionalidades
+
+### Área Pública (`/ingressos`)
+- Vitrine de eventos com filtro por gênero musical
+- **Drawer lateral** com detalhes do evento ao clicar no card
+- Carrinho de compras com controle de quantidade
+- Checkout que cadastra o cliente automaticamente
+- **Mapa de rotas** integrado para orientar o cliente até o local do evento
+
+### Área Administrativa (`/login`)
+- Autenticação de funcionários
+- **Eventos** — Cadastrar, listar, consultar, editar e excluir
+- **Clientes** — Cadastrar, listar, consultar, editar e excluir  
+- **Pedidos** — Listar e registrar vendas manualmente
+- Sidebar retrátil com navegação categorizada
+
+---
+
+## 🔐 Segurança
+
+A API key do Google Maps **não está versionada** neste repositório.  
+O arquivo `src/environments/environment.ts` está listado no `.gitignore`.  
+Consulte a seção de configuração acima para gerar e configurar sua própria chave.
+
+---
+## 👤 Autor
+
+Desenvolvido por **Victor Gabriel** E **Yago Santos**  como projeto acadêmico para o SENAC
+[![GitHub](https://img.shields.io/badge/GitHub-Yago--Silva-181717?style=flat&logo=github)](https://github.com/yago-silva-ads/Site_CasaDeShow_Angular)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Yago%20Santos%20Silva-0077B5?style=flat&logo=linkedin)](https://www.linkedin.com/in/yago-santos-silva-aa3233245)
+[![GitHub](https://img.shields.io/badge/GitHub-Yago--Silva-181717?style=flat&logo=github)](https://github.com/yago-silva-ads/Site_CasaDeShow_Angular)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Yago%20Santos%20Silva-0077B5?style=flat&logo=linkedin)](https://www.linkedin.com/in/yago-santos-silva-aa3233245)
+
